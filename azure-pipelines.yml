@@ -1,5 +1,39 @@
 queue:
 
 steps:
-- powershell: |
-   echo "Hello Azure Pipeline!"
+- script: |
+    git clone https://github.com/Azure/azure-c-shared-utility.git -b 2018-10-03
+    git clone https://github.com/Azure/azure-umqtt-c.git -b 2018-10-03
+    git clone https://github.com/Azure/azure-uamqp-c.git -b 2018-10-03
+    git clone https://github.com/kgabis/parson.git
+    git clone https://github.com/Azure/azure-uhttp-c.git -b 2018-09-11
+    git clone https://github.com/Microsoft/RIoT.git
+    git clone https://github.com/Azure/azure-utpm-c.git -b 2018-02-09
+    pushd azure-c-shared-utility
+    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 .
+    nmake
+    popd
+    pushd azure-umqtt-c
+    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 .
+    nmake
+    popd
+    pushd azure-uamqp-c
+    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 .
+    nmake
+    popd
+    pushd parson
+    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 .
+    nmake
+    popd
+    pushd azure-uhttp-c
+    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 .
+    nmake
+    popd
+    pushd RIoT
+    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 .
+    nmake
+    popd
+    pushd azure-utpm-c
+    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 .
+    nmake
+    popd
