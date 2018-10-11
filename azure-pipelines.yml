@@ -1,0 +1,5 @@
+queue:
+
+steps:
+- powershell: |
+   echo "Hello Azure Pipeline!"
