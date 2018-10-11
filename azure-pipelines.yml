@@ -2,6 +2,7 @@ queue:
 
 steps:
 - script: |
+    call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
     git clone https://github.com/Azure/azure-c-shared-utility.git -b 2018-10-03
     git clone https://github.com/Azure/azure-umqtt-c.git -b 2018-10-03
     git clone https://github.com/Azure/azure-uamqp-c.git -b 2018-10-03
