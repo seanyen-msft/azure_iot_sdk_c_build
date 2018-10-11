@@ -11,30 +11,30 @@ steps:
     git clone https://github.com/Microsoft/RIoT.git
     git clone https://github.com/Azure/azure-utpm-c.git -b 2018-02-09
     pushd azure-c-shared-utility
-    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 .
+    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 -DCMAKE_PREFIX_PATH=c:/opt/rosdeps/x64 .
     nmake
     popd
     pushd azure-umqtt-c
-    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 .
+    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 -DCMAKE_PREFIX_PATH=c:/opt/rosdeps/x64 .
     nmake
     popd
     pushd azure-uamqp-c
-    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 .
+    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 -DCMAKE_PREFIX_PATH=c:/opt/rosdeps/x64 .
     nmake
     popd
     pushd parson
-    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 .
+    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 -DCMAKE_PREFIX_PATH=c:/opt/rosdeps/x64 .
     nmake
     popd
     pushd azure-uhttp-c
-    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 .
+    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 -DCMAKE_PREFIX_PATH=c:/opt/rosdeps/x64 .
     nmake
     popd
     pushd RIoT
-    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 .
+    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 -DCMAKE_PREFIX_PATH=c:/opt/rosdeps/x64 .
     nmake
     popd
     pushd azure-utpm-c
-    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 .
+    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 -DCMAKE_PREFIX_PATH=c:/opt/rosdeps/x64 .
     nmake
     popd
