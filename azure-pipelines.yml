@@ -3,38 +3,36 @@ queue:
 steps:
 - script: |
     call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
-    git clone https://github.com/Azure/azure-c-shared-utility.git -b 2018-10-03
-    git clone https://github.com/Azure/azure-umqtt-c.git -b 2018-10-03
-    git clone https://github.com/Azure/azure-uamqp-c.git -b 2018-10-03
-    git clone https://github.com/kgabis/parson.git
-    git clone https://github.com/Azure/azure-uhttp-c.git -b 2018-09-11
-    git clone https://github.com/Microsoft/RIoT.git
-    git clone https://github.com/Azure/azure-utpm-c.git -b 2018-02-09
+    git clone --recursive https://github.com/Azure/azure-c-shared-utility.git -b 1.2.10
+    git clone --recursive https://github.com/Azure/azure-umqtt-c.git -b 1.2.10
+    git clone --recursive https://github.com/Azure/azure-uamqp-c.git -b 1.2.10
+    git clone --recursive https://github.com/Azure/azure-uhttp-c.git -b 2018-09-11
+    git clone --recursive https://github.com/Azure/azure-utpm-c.git -b 2018-02-09
+    git clone --recursive https://github.com/Azure/azure-iot-sdk-c.git -b 1.2.10
     pushd azure-c-shared-utility
-    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 -DCMAKE_PREFIX_PATH=c:/opt/rosdeps/x64 .
-    nmake
+    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 -DCMAKE_PREFIX_PATH=c:/opt/rosdeps/x64 -Duse_installed_dependencies=ON .
+    cmake --build . --target install
     popd
     pushd azure-umqtt-c
-    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 -DCMAKE_PREFIX_PATH=c:/opt/rosdeps/x64 .
-    nmake
+    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 -DCMAKE_PREFIX_PATH=c:/opt/rosdeps/x64 -Duse_installed_dependencies=ON .
+    cmake --build . --target install
     popd
     pushd azure-uamqp-c
-    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 -DCMAKE_PREFIX_PATH=c:/opt/rosdeps/x64 .
-    nmake
-    popd
-    pushd parson
-    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 -DCMAKE_PREFIX_PATH=c:/opt/rosdeps/x64 .
-    nmake
+    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 -DCMAKE_PREFIX_PATH=c:/opt/rosdeps/x64 -Duse_installed_dependencies=ON .
+    cmake --build . --target install
     popd
     pushd azure-uhttp-c
-    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 -DCMAKE_PREFIX_PATH=c:/opt/rosdeps/x64 .
-    nmake
-    popd
-    pushd RIoT
-    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 -DCMAKE_PREFIX_PATH=c:/opt/rosdeps/x64 .
-    nmake
+    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 -DCMAKE_PREFIX_PATH=c:/opt/rosdeps/x64 -Duse_installed_dependencies=ON .
+    cmake --build . --target install
     popd
     pushd azure-utpm-c
-    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 -DCMAKE_PREFIX_PATH=c:/opt/rosdeps/x64 .
-    nmake
+    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 -DCMAKE_PREFIX_PATH=c:/opt/rosdeps/x64 -Duse_installed_dependencies=ON .
+    cmake --build . --target install
     popd
+    pushd azure-iot-sdk-c
+    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 -DCMAKE_PREFIX_PATH=c:/opt/rosdeps/x64 -Duse_installed_dependencies=ON .
+    cmake --build . --target install
+    popd
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: 'c:\opt\rosdeps\x64'
