@@ -9,7 +9,7 @@ steps:
     git clone --recursive https://github.com/Azure/azure-umqtt-c.git -b 1.1.10
     git clone --recursive https://github.com/seanyen-msft/azure-uamqp-c.git -b 1.2.10_patch
     git clone --recursive https://github.com/Azure/azure-uhttp-c.git -b 2018-09-11
-    git clone --recursive https://github.com/Azure/azure-utpm-c.git -b 2018-02-09
+    git clone --recursive https://github.com/Azure/azure-utpm-c.git -b release_2018_09_11
     git clone --recursive https://github.com/Azure/azure-iot-sdk-c.git -b 1.2.10
     pushd azure-ctest
     cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 -DCMAKE_PREFIX_PATH=c:/opt/rosdeps/x64 -Duse_installed_dependencies=ON .
