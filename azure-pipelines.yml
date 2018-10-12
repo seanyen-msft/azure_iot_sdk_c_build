@@ -3,12 +3,22 @@ queue:
 steps:
 - script: |
     call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+    git clone --recursive https://github.com/Azure/azure-ctest.git -b v1.1.0
+    git clone --recursive https://github.com/Azure/umock-c -b v1.1.0
     git clone --recursive https://github.com/Azure/azure-c-shared-utility.git -b 1.1.10
     git clone --recursive https://github.com/Azure/azure-umqtt-c.git -b 1.1.10
     git clone --recursive https://github.com/Azure/azure-uamqp-c.git -b 1.2.10
     git clone --recursive https://github.com/Azure/azure-uhttp-c.git -b 2018-09-11
     git clone --recursive https://github.com/Azure/azure-utpm-c.git -b 2018-02-09
     git clone --recursive https://github.com/Azure/azure-iot-sdk-c.git -b 1.2.10
+    pushd azure-ctest
+    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 -DCMAKE_PREFIX_PATH=c:/opt/rosdeps/x64 -Duse_installed_dependencies=ON .
+    cmake --build . --target install
+    popd
+    pushd umock-c
+    cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 -DCMAKE_PREFIX_PATH=c:/opt/rosdeps/x64 -Duse_installed_dependencies=ON .
+    cmake --build . --target install
+    popd
     pushd azure-c-shared-utility
     cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 -DCMAKE_PREFIX_PATH=c:/opt/rosdeps/x64 -Duse_installed_dependencies=ON .
     cmake --build . --target install
@@ -18,6 +28,7 @@ steps:
     cmake --build . --target install
     popd
     pushd azure-uamqp-c
+    git apply ..\azure-uamqp-c.patch
     cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=c:/opt/rosdeps/x64 -DCMAKE_PREFIX_PATH=c:/opt/rosdeps/x64 -Duse_installed_dependencies=ON .
     cmake --build . --target install
     popd
